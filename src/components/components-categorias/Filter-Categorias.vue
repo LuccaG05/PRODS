@@ -1,7 +1,6 @@
 <script setup>
     import { ref, onMounted } from 'vue';
 import produtosJson from '@/assets/data/produtos.json';
-import Filter from "@/components/Filter.vue"
 
 const produtos = ref([]);
 const preco = ref(0);
@@ -10,15 +9,12 @@ onMounted(() => {
   produtos.value = produtosJson.produtos;
 });
 
-function atualizaPreco(event) {
-  preco.value = event.target.value;
-}
 </script>
 
 <template>
     <main class="content border-solid border-2 border-gray-200 shadow-lg rounded-lg">
         <div class="overflow-x-auto">
-            <form class="filter flex flex-col lg:flex-row sm:space-x-5 max-w-sm mx-auto my-4">
+            <form class="filter flex flex-col lg:flex-row sm:space-x-4 max-w-sm mx-auto my-4">
                 <div class="flex flex-col w-full sm:w-1/2">
                     <label for="number-input"
                         class="block mb-0 text-sm font-medium text-gray-900 dark:text-white">Código:</label>
@@ -42,17 +38,7 @@ function atualizaPreco(event) {
                     </select>
                 </div>
 
-                <div class="flex flex-col w-full sm:w-1/2">
-                    <label for="price-range" class="block text-sm font-medium text-gray-900 dark:text-white">
-                        Preço
-                    </label>
-                    <input type="range" id="price-range" class="accent-indigo-600 w-full mt-2" min="0" max="10000"
-                        :value="preco" @input="atualizaPreco" />
-                    <div class="flex justify-between text-gray-500 mt-0">
-                        <span>Preço: R${{ preco }}</span>
-                        <span>R$10.000</span>
-                    </div>
-                </div>
+                
                 <div class="flex flex-col sm:flex-row justify-between items-center">
                     <button
                         class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">

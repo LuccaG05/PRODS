@@ -1,18 +1,17 @@
 <script setup>
-import TableCategoria from "@/components/components-categorias/Table-Categorias.vue"
-import TableMobileCategoria from "@/components/components-categorias/Table-mobile-categoria.vue"
+import Table from '@/components/components-usuarios/Table-usuarios.vue'
+import TableMobile from '@/components/components-usuarios/Table-mobile.vue'
 </script>
 
 <template>
     <div class="p-8 sm:ml-64">
-        <h1 class="text-4xl font-bold mb-4 sm:mb-1">Lista de Categorias</h1>
+        <h1 class="text-4xl font-bold mb-4 sm:mb-1">Lista de Usuários</h1>
         <div class="table-desktop">
-            <TableCategoria />
+            <Table />
         </div>
         <div class="table-mobile">
-            <TableMobileCategoria />
+            <TableMobile />
         </div>
-
     </div>
 </template>
 
@@ -30,14 +29,14 @@ h1 {
     display: none;
 }
 
-/* @media(max-width: 676px) {
+@media(max-width: 901px) {
     .table-desktop {
         display: none;
     }
 
     .table-mobile {
         display: block;
-        ou inline, inline-block
+        /* ou inline, inline-block */
     }
-} */
+}
 </style>
