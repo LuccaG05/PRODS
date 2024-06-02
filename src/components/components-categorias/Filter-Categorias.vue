@@ -1,13 +1,4 @@
 <script setup>
-    import { ref, onMounted } from 'vue';
-import produtosJson from '@/assets/data/produtos.json';
-
-const produtos = ref([]);
-const preco = ref(0);
-
-onMounted(() => {
-  produtos.value = produtosJson.produtos;
-});
 
 </script>
 

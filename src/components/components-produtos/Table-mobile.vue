@@ -36,7 +36,7 @@
                         
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ produto.codigo }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ produto.nome }}</td>
-                        <td class="flex items-center justify-center px-6 py-4">
+                        <td class="flex px-6 py-4">
                             <RouterLink to="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                 <svg
                                     class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"

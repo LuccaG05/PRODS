@@ -1,18 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import produtosJson from '@/assets/data/produtos.json';
-import FilterMobile from "@/components/components-produtos/Filter-mobile.vue";
 
-const produtos = ref([]);
-const preco = ref(0);
-
-onMounted(() => {
-    produtos.value = produtosJson.produtos;
-});
-
-function atualizaPreco(event) {
-    preco.value = event.target.value;
-}
 </script>
 
 

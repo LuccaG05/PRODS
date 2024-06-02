@@ -1,8 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import categoriasJson from '@/assets/data-categoria/categorias.json';
-import Filter from "@/components/components-categorias/Filter-Categorias.vue"
-import FilterMobile from "@/components/components-produtos/Filter-mobile.vue"
+import Filter from "@/components/components-categorias/Filter-categorias.vue"
 
 const categorias = ref([]);
 
@@ -17,9 +16,6 @@ onMounted(() => {
         <class class="filter-desktop">
             <Filter />
         </class>
-        <!-- <class class="filter-mobile">
-            <FilterMobile/>
-        </class> -->
         <div class="overflow-x-auto ">
         </div>
         <div class="relative overflow-x-auto border-solid border-2 border-indigo-600 sm:rounded-lg shadow-lg mt-6">
@@ -46,7 +42,7 @@ onMounted(() => {
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ categoria.codigo }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ categoria.nome }}</td>
                         <td class="mx-6 my-4">
-                            <div style="" class="mx-4 " :class="categoria.status === 'ativo' ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800 rounded-full dark:bg-red-900 dark:text-red-300'">
+                            <div style="" class="mx-4" :class="categoria.status === 'ativo' ? 'bg-green-100 text-green-800 rounded-full dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-800  rounded-full dark:bg-red-900 dark:text-red-300'">
                                 {{ categoria.status }}
                             </div>
                         </td>
@@ -112,9 +108,9 @@ button {
     display: flex;
 }
 
-/* 
-.filter-desktop {
-    display: block; 
+
+/* .filter-desktop {
+    display: block;
 }
 .filter-mobile {
     display: none;
