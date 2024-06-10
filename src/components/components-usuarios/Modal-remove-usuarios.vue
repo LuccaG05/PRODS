@@ -1,6 +1,6 @@
 <script setup>
-import { FwbButton, FwbModal } from 'flowbite-vue'
 import { ref } from 'vue';
+import { FwbButton, FwbModal } from 'flowbite-vue'
 
 const isShowModalRemove = ref(false)
 
@@ -11,8 +11,9 @@ function showModalRemove() {
     isShowModalRemove.value = true
 }
 
-const idProduct = defineProps(["id"])
-const id = idProduct.id
+const idCategory = defineProps(["id"])
+const id = idCategory.id
+
 
 </script>
 
@@ -29,13 +30,13 @@ const id = idProduct.id
         <fwb-modal persistent class="custom-modal" v-if="isShowModalRemove" @close="closeModalRemove">
             <template #header>
                 <div class="flex items-center text-lg text-red-600">
-                    Remover produto
+                    Remover usuário
                 </div>
             </template>
 
             <template #body>
                 <div class="flex items-center text-2xl justify-center align-center text-gray-900">
-                    <h1 class="m-0">Tem certeza que deseja remover esse produto?</h1>
+                    <h1 class="m-0">Tem certeza que deseja remover esse usuário?</h1>
                 </div>
 
             </template>
@@ -44,31 +45,27 @@ const id = idProduct.id
                     <fwb-button @click="closeModalRemove" color="alternative">
                         Cancelar
                     </fwb-button>
-                    <fwb-button @click="removeProduct(id)" color="red">
+                    <fwb-button @click="removeCategory(id)" color="red">
                         Sim, remover!
                     </fwb-button>
                 </div>
             </template>
         </fwb-modal>
-        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button">
-
-        </button>
-        
+        <!-- <ModalRemove :id="category.id" /> -->
     </RouterLink>
-
 </template>
 
 <script>
-import ProductDataService from "@/services/ProductDataService";
+import CategoryDataService from "@/services/CategoryDataService";
 
 export default {
-  name: "products-delete",
+  name: "categories-delete",
   methods: {
-    removeProduct(id){
-        ProductDataService.deleteProduct(id)
+    removeCategory(id){
+        CategoryDataService.deleteCategory(id)
         .then(response => {
-            alert("Produto removido com sucesso")
-            window.location.reload();
+            alert("Categoria removida com sucesso")
+            window.location.reload("/categorias");
             console.log(response)
         })
         .catch(e => {
@@ -78,4 +75,8 @@ export default {
   }
 }
 
+
 </script>
+
+<style scoped>
+</style>

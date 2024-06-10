@@ -11,6 +11,10 @@ function showModalRemove() {
     isShowModalRemove.value = true
 }
 
+const idCategory = defineProps(["id"])
+const id = idCategory.id
+
+
 </script>
 
 <template>
@@ -41,7 +45,7 @@ function showModalRemove() {
                     <fwb-button @click="closeModalRemove" color="alternative">
                         Cancelar
                     </fwb-button>
-                    <fwb-button @click="closeModalRemove" color="red">
+                    <fwb-button @click="removeCategory(id)" color="red">
                         Sim, remover!
                     </fwb-button>
                 </div>
@@ -51,4 +55,28 @@ function showModalRemove() {
     </RouterLink>
 </template>
 
-<style scoped></style>
+<script>
+import CategoryDataService from "@/services/CategoryDataService";
+
+export default {
+  name: "categories-delete",
+  methods: {
+    removeCategory(id){
+        CategoryDataService.deleteCategory(id)
+        .then(response => {
+            alert("Categoria removida com sucesso")
+            window.location.reload("/categorias");
+            console.log(response)
+        })
+        .catch(e => {
+            console.log(e);
+        })
+    }
+  }
+}
+
+
+</script>
+
+<style scoped>
+</style>

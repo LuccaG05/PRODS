@@ -2,7 +2,11 @@
 import { ref, onMounted } from 'vue';
 import Pagination from '@/components/Pagination.vue';
 import { FwbButton, FwbModal } from 'flowbite-vue'
+import ModalEditUsuarios from "@/components/components-usuarios/Modal-edit-usuarios.vue";
+import ModalRemoveUsuarios from "@/components/components-usuarios/Modal-remove-usuarios.vue";
 const isShowModalEdit = ref(false)
+
+
 
 function closeModalEdit() {
     isShowModalEdit.value = false
@@ -19,27 +23,15 @@ function closeModalRemove() {
 function showModalRemove() {
     isShowModalRemove.value = true
 }
-// const produtos = ref([]);
-// const preco = ref(0);
-
-// onMounted(() => {
-//     produtos.value = produtosJson.produtos;
-// });
-
-// function atualizaPreco(event) {
-//     preco.value = event.target.value;
-// }
-
 </script>
 
 <template>
     <main class="content">
         <div class="overflow-x-auto ">
         </div>
-        <div class="relative p-2 overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative  overflow-x-auto shadow-md sm:rounded-lg">
             <div
                 class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
-
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -57,157 +49,103 @@ function showModalRemove() {
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-
+                        <th scope="col" class="px-6 py-3">
+                        </th>
                         <th scope="col" class="px-6 py-3">
                             Nome
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            E-mail
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Função
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             Status
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             Ação
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
+                    <tr v-for="(user, index) in users" :key="index"
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <th scope="row"
-                            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                            <img class="w-10 h-10 rounded-full" src="https://github.com/maria.png" alt="Jese image">
-                            <div class="ps-3">
-                                <div class="text-base font-semibold">Neil Sims</div>
-                                <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
-                            </div>
-                        </th>
                         <td class="px-6 py-4">
-                            React Developer
+                            <img class="w-12 mx-auto md:w-32 max-w-full max-h-full rounded-full"
+                                :src="user.imagem ?? '/public/defaultNoImage.png'" :alt="user.nome">
                         </td>
                         <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Online
+                            <div class="">
+                                <div class="font-normal text-gray-900">{{ user.nome }}</div>
                             </div>
                         </td>
                         <td class="px-6 py-4">
+                            <div class="">
+                                <div class="font-normal text-gray-900">{{  user.email  }}</div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="font-normal text-gray-900">{{ user.cargo }}</div>
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <div class=" text-center w-20 mx-auto"
+                                :class="user.status === true ? 'bg-green-100 text-gray-900 rounded-full' : 'bg-red-100 text-red-800 rounded-full'">
+                                {{ user.status ? 'ativo' : 'inativo' }}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 flex justify-center">
                             <!-- Modal toggle -->
-                            <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <th scope="row"
-                            class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img class="w-10 h-10 rounded-full" src="https://github.com/eduarda.png" alt="Jese image">
-                            <div class="ps-3">
-                                <div class="text-base font-semibold">Bonnie Green</div>
-                                <div class="font-normal text-gray-500">bonnie@flowbite.com</div>
-                            </div>
-                        </th>
-                        <td class="px-6 py-4">
-                            Designer
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Online
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <!-- Modal toggle -->
-                            <a href="#" type="button" data-modal-show="editUserModal"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <th scope="row"
-                            class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img class="w-10 h-10 rounded-full" src="https://github.com/lauan.png" alt="Jese image">
-                            <div class="ps-3">
-                                <div class="text-base font-semibold">Jese Leos</div>
-                                <div class="font-normal text-gray-500">jese@flowbite.com</div>
-                            </div>
-                        </th>
-                        <td class="px-6 py-4">
-                            Vue JS Developer
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Online
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <!-- Modal toggle -->
-                            <a href="#" type="button" data-modal-show="editUserModal"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <th scope="row"
-                            class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img class="w-10 h-10 rounded-full" src="https://github.com/joaopierdev.png"
-                                alt="Jese image">
-                            <div class="ps-3">
-                                <div class="text-base font-semibold">Thomas Lean</div>
-                                <div class="font-normal text-gray-500">thomes@flowbite.com</div>
-                            </div>
-                        </th>
-                        <td class="px-6 py-4">
-                            UI/UX Engineer
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div> Online
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <!-- Modal toggle -->
-                            <a href="#" type="button" data-modal-show="editUserModal"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <th scope="row"
-                            class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img class="w-10 h-10 rounded-full" src="https://github.com/luccag05.png" alt="Jese image">
-                            <div class="ps-3">
-                                <div class="text-base font-semibold">Leslie Livingston</div>
-                                <div class="font-normal text-gray-500">leslie@flowbite.com</div>
-                            </div>
-                        </th>
-                        <td class="px-6 py-4">
-                            SEO Specialist
-                        </td>
-                        <td class="px-6 py-4">
-                            <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div> Offline
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <!-- Modal toggle -->
-                            <RouterLink href="#" type="button" data-modal-show="editUserModal"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user
-                            </RouterLink>
+                            <ModalEditUsuarios/>
+                            <ModalRemoveUsuarios/>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
         </div>
         <Pagination />
     </main>
 </template>
 
+<script>
+import UserDataService from "@/services/UserDataService";
+
+export default {
+    name: "users-list",
+    data() {
+        return {
+            users: []
+        };
+    },
+    methods: {
+        retrieveUsers() {
+            UserDataService.getAll()
+                .then(response => {
+                    this.users = response.data;
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+    },
+    mounted() {
+        this.retrieveUsers();
+    }
+}
+
+
+</script>
+
+
+
 <style scoped>
+
+tr img{
+    width: 50px;
+    height: auto;
+}
+
 .content {
     width: 100%;
     margin: auto;
